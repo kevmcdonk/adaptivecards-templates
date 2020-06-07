@@ -35,7 +35,8 @@
     "linuxFxVersion": "DOCKER|gracez72/acms:1.0",
     "appInsightsInstrumentationKey": "931c613f-fdcb-40a9-bd39-314ce31bc5d6",
     "databaseName": "acms",
-    "docker_registry_server_url": "https://index.docker.io"
+    "docker_registry_server_url": "https://index.docker.io",
+    "app_service_plan_subscription": "[concat('/subscriptions/',subscription().subscriptionId,'/resourcegroups/',resourceGroup().name,'/providers/Microsoft.Web/serverFarms/plan-',parameters('sites_adaptivecms_name'),'/webHostingPlan"
   },
   "resources": [
     {
