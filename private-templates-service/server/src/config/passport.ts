@@ -27,6 +27,7 @@ var bearerStrategy = new passportAD.BearerStrategy(options, function(
   token: ITokenPayload,
   done: VerifyCallback
 ) {
+  logger.info(config.identityMetadata, " was the identity metadata link"); 
   logger.info(token, "was the token retreived");
   if (!token.oid) done(new Error("oid is not found in token"));
   else {
