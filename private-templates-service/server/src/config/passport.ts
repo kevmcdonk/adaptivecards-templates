@@ -10,12 +10,12 @@ enum LoggingLevels {
   Error = "error"
 }
 
-var options = {
+var options: passportAD.IBearerStrategyOption = {
   identityMetadata: config.identityMetadata,
   clientID: config.clientID,
   validateIssuer: config.validateIssuer,
   issuer: undefined, // For tenant-specific endpoint, issuer from metadata is used by default
-  passReqToCallback: false,
+  // passReqToCallback: false,
   isB2C: false,
   policyName: undefined,
   allowMultiAudiencesInToken: config.allowMultiAudiencesInToken,
@@ -23,11 +23,11 @@ var options = {
   loggingLevel: LoggingLevels.Info
 };
 
-var bearerStrategy = new passportAD.BearerStrategy(options, function(
+var bearerStrategy = new passportAD.BearerStrategy(options, function (
   token: ITokenPayload,
   done: VerifyCallback
 ) {
-  logger.info(config.identityMetadata, " was the identity metadata link"); 
+  logger.info(config.identityMetadata, " was the identity metadata link");
   logger.info(token, "was the token retreived");
   if (!token.oid) done(new Error("oid is not found in token"));
   else {

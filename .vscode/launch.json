@@ -1,12 +1,12 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Attach to Node Functions",
-            "type": "node",
-            "request": "attach",
-            "port": 19229,
-            "preLaunchTask": "func: host start"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "npm run dev",
+      "name": "Run npm start",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/private-templates-service/server"
+    }
+  ]
 }
