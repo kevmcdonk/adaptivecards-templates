@@ -12,7 +12,7 @@ import { CLICK_HERE, ADMIN_PORTAL, BASIC_AUTH } from "../../assets/strings";
 const mapStateToPropsWelcome = (state: RootState) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user
+    user: state.auth.user,
   };
 };
 
@@ -25,18 +25,21 @@ const WelcomeContent = (props: WelcomeProps): ReactElement => {
   // Not authenticated, present a sign in button
   return (
     <React.Fragment>
-      <Button style={{ backgroundColor: COLORS.BLUE }} onClick={props.authButtonMethod}>
+      <Button
+        style={{ backgroundColor: COLORS.BLUE }}
+        onClick={props.authButtonMethod}
+      >
         {CLICK_HERE}
       </Button>
     </React.Fragment>
   );
-}
+};
 
 class Welcome extends React.Component<WelcomeProps> {
   render() {
     return (
       <OuterWrapper>
-        <h1>{ADMIN_PORTAL}</h1>
+        <h1>{ADMIN_PORTAL}-KM UPDATED</h1>
         <p className="lead">{BASIC_AUTH}</p>
         <WelcomeContent
           user={this.props.user}
