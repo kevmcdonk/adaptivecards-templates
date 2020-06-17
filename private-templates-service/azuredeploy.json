@@ -105,7 +105,8 @@
         ],
         "loadBalancing": "LeastRequests",
         "experiments": {
-          "rampUpRules": []
+          "rampUpRules": [
+          ]
         },
         "autoHealEnabled": false,
         "cors": {
@@ -166,11 +167,13 @@
             "name": "EnableMongo"
           }
         ],
+        "enableFreeTier": true,
         "databaseAccountOfferType": "Standard",
         "enableAutomaticFailover": false,
         "enableMultipleWriteLocations": false,
         "isVirtualNetworkFilterEnabled": false,
-        "virtualNetworkRules": [],
+        "virtualNetworkRules": [
+        ],
         "disableKeyBasedMetadataWriteAccess": false
       }
     },
