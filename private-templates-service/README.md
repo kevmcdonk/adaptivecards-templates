@@ -45,6 +45,15 @@ Using the 'Deploy to Azure' button will fetch an image using the latest publishe
 4. Click 'New registration'.
 5. Fill in the details for a new AAD registration. Under 'Redirect URI', enter the URL at which the admin portal is hosted at from the 'Deploy to Azure' instructions. 
 6. Click 'Register'. 
+7. Select Expose an API from the left menu
+8. Click on add a scope and leave as default
+9. Enter 'Templates.All' for the Scope Name and Display Name then click Save
+10. Click on 'Add a client application' then enter the App Id (which you can easily copy from the api:// info on the left of the screen) then click save
+11. Select API Permissions from the left menu then click on 'Add a permission'
+12. Click on My APIs and select your AppID
+13. Expand the section and select Templates.All and then click on 'Add permissions'
+14. Click on Grant Admin Consent
+
 
 ### Telemetry Privacy Statement
 
