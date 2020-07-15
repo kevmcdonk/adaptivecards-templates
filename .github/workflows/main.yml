@@ -1,11 +1,12 @@
-name: Docker Image CI
+name: Manual Docker Image Build
 
 on:
-  push:
-    branches: [ dev ]
-  pull_request:
-    branches: [ dev ]
-
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Docker Image Name'
+        required: false
+        default: 'kevmcdonk/acms_ghb'
 jobs:
 
   build:
