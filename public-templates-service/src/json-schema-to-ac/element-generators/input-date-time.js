@@ -4,9 +4,9 @@ const makeLabel = require('../utils/make-label')
 
 module.exports = function inputDateTimeElementGenerator (key, config, options) {
   const elements = []
-  elements.push(makeLabel(config))
+  elements.push(makeLabel(key, config))
 
-  const numberElement = makeBaseElement(key, 'Input.DateTime', config)
+  const numberElement = makeBaseElement(key, 'Input.Date', config)
   // TODO: No title support?
   addDescriptions(numberElement, config)
   if (config.showWhen) {
