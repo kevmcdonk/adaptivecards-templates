@@ -11,5 +11,10 @@
 		"source.fixAll.eslint": true
 	},
 	"eslint.format.enable": true,
-	"appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"]
+	"appService.zipIgnorePattern": [
+		"node_modules{,/**}",
+		".vscode{,/**}"
+	],
+	"appService.defaultWebAppToDeploy": "/subscriptions/e0f34d6f-3eed-4225-a628-686e2cb971e1/resourceGroups/ghbacservice/providers/Microsoft.Web/sites/ghbacservice-nodocker",
+	"appService.deploySubpath": "."
 }
