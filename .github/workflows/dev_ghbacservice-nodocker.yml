@@ -33,6 +33,7 @@ jobs:
         run: |
           npm install --production
           npm install -g typescript ts-node ts-lint
+          npm run init-app
           npm run build --if-present
 
       - name: "Deploy to Azure Web App"
