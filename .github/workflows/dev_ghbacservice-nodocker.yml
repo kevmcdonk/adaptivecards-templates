@@ -34,7 +34,12 @@ jobs:
           path: .
           # Working directory before zipping
           directory: ./private-templates-service/server/dist
-            
+      - name: Content list
+        uses: enricomarino/actions@v2
+        with:
+          # The folder to inspect
+          source: ./private-templates-service/server/dist
+          
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         with:
