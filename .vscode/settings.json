@@ -1,15 +1,17 @@
 {
-	"azureFunctions.deploySubpath": "src",
-	"azureFunctions.projectLanguage": "TypeScript",
-	"azureFunctions.projectRuntime": "~2",
-	"debug.internalConsoleOptions": "neverOpen",
-	"azureFunctions.preDeployTask": "npm prune",
-	"editor.formatOnSave": true,
-	"javascript.format.enable": false,
-	"javascript.validate.enable": false,
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	},
-	"eslint.format.enable": true,
-	"appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"]
+  "azureFunctions.deploySubpath": "src",
+  "azureFunctions.projectLanguage": "TypeScript",
+  "azureFunctions.projectRuntime": "~2",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.preDeployTask": "npm prune",
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "javascript.validate.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.format.enable": true,
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.deploySubpath": "private-templates-service\\server",
+  "appService.defaultWebAppToDeploy": "/subscriptions/e0f34d6f-3eed-4225-a628-686e2cb971e1/resourceGroups/ghbacservice/providers/Microsoft.Web/sites/ghbacservice-nodocker"
 }

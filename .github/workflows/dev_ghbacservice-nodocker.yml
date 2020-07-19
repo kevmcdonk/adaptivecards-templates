@@ -21,34 +21,24 @@ jobs:
           node-version: "10.15"
 
       - name: npm install, build, and test
+        working-directory: private-templates-service/client
+        run: |
+          npm install --production
+          npm install -g typescript
+          npm install -g react-scripts
+      # RUN react-scripts build
+
+      - name: npm install, build, and test
         working-directory: private-templates-service/server
         run: |
-          npm install -g typescript ts-node ts-lint
           npm install --production
-          npm run init-app
+          npm install -g typescript ts-node ts-lint
           npm run build --if-present
-        
-      - name: Zip Release
-        uses: TheDoctor0/zip-release@0.4.1
-        with:
-          filename: release.zip
-          # Base path for archive files
-          path: .
-          # Working directory before zipping
-          directory: ./private-templates-service/server/dist
 
-      - name: Path lister action
-        uses: Rishabh510/Path-lister-action@1.0
-        with:
-          # Path to find the files
-          path: .
-          # Type of files to find
-          type: ".zip"
-          
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         with:
           app-name: "ghbacservice-nodocker"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_bed72a7625234929ad6952f1f6684632 }}
-          package: ./private-templates-service/server/dist
+          package: ./private-templates-service
