@@ -26,7 +26,7 @@ jobs:
           npm install --production
           npm install -g typescript
           npm install -g react-scripts
-      # RUN react-scripts build
+          npm run build
 
       - name: npm install, build, and test
         working-directory: private-templates-service/server
