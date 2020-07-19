@@ -25,6 +25,15 @@ jobs:
         run: |
           npm run init-app
           npm run build --if-present
+        
+      - name: Zip Release
+          uses: TheDoctor0/zip-release@0.4.1
+          with:
+          filename: release.zip
+          # Base path for archive files
+          path: .
+          # Working directory before zipping
+          directory: ./private-templates-service/server/dist
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
@@ -32,4 +41,4 @@ jobs:
           app-name: "ghbacservice-nodocker"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_bed72a7625234929ad6952f1f6684632 }}
-          package: ./private-templates-service/server/dist
+          package: ./release.zip
