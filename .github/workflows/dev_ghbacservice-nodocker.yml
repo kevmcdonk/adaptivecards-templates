@@ -21,21 +21,19 @@ jobs:
           node-version: "10.15"
 
       - name: npm install, build, and test
+        working-directory: private-templates-service/server
+        run: |
+          npm run init-app
+          npm run build --if-present
+
+      - name: npm install, build, and test
         working-directory: private-templates-service/client
         run: |
           npm install --production
           npm install -g typescript
           npm install -g react-scripts
           npm run build
-
-      - name: npm install, build, and test
-        working-directory: private-templates-service/server
-        run: |
-          npm install --production
-          npm install -g typescript ts-node ts-lint
-          npm run init-app
-          npm run build --if-present
-
+          
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         with:
