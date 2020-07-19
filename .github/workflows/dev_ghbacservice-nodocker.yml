@@ -35,11 +35,13 @@ jobs:
           # Working directory before zipping
           directory: ./private-templates-service/server/dist
 
-      - name: Content list
-        uses: enricomarino/actions@v2
+      - name: Path lister action
+        uses: Rishabh510/Path-lister-action@1.0
         with:
-          # The folder to inspect
-          source: .
+          # Path to find the files
+          path: .
+          # Type of files to find
+          type: ".js"
           
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
