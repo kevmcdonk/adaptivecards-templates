@@ -28,6 +28,7 @@ jobs:
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v1
+        working-directory: private-templates-service/server/dist
         with:
           app-name: "ghbacservice-nodocker"
           slot-name: "production"
