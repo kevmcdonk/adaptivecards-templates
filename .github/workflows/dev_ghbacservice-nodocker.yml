@@ -41,7 +41,7 @@ jobs:
           # Path to find the files
           path: .
           # Type of files to find
-          type: ".js"
+          type: ".zip"
           
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
