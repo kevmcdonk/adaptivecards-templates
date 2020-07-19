@@ -30,7 +30,6 @@ jobs:
       - name: npm install, build, and test
         working-directory: private-templates-service/client
         run: |
-          npm install --production
           npm install -g typescript
           npm install -g react-scripts
           npm run build
