@@ -41,4 +41,4 @@ jobs:
           app-name: "ghbacservice-nodocker"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_bed72a7625234929ad6952f1f6684632 }}
-          package: ./release.zip
+          package: ./private-templates-service/server/dist/*.zip
