@@ -28,9 +28,8 @@ jobs:
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v1
-        working-directory: private-templates-service/server/dist
         with:
           app-name: "ghbacservice-nodocker"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_bed72a7625234929ad6952f1f6684632 }}
-          package: .
+          package: ./private-templates-service/server/dist
