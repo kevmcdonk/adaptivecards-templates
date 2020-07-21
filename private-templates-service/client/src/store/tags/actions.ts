@@ -1,17 +1,17 @@
-import { REQUEST_ALL_TAGS_GET,
-         REQUEST_ALL_TAGS_GET_SUCCESS,
-         REQUEST_ALL_TAGS_GET_FAIL, 
-         CLEAR_SELECTED_TAGS, 
-         REMOVE_SELECTED_TAG,
-         ADD_SELECTED_TAG, 
-         TagsUpdateType,
-         TagsAction } from "./types";
+import {
+  REQUEST_ALL_TAGS_GET,
+  REQUEST_ALL_TAGS_GET_SUCCESS,
+  REQUEST_ALL_TAGS_GET_FAIL,
+  CLEAR_SELECTED_TAGS,
+  REMOVE_SELECTED_TAG,
+  ADD_SELECTED_TAG,
+  TagsUpdateType,
+  TagsAction,
+} from "./types";
 import { Tags } from "adaptive-templating-service-typescript-node";
 import { IncomingMessage } from "http";
 import { RootState } from "../rootReducer";
 import { initClientSDK } from "../../utils/TemplateUtil";
-
-
 
 export function requestAllTags(): TagsAction {
   return {
@@ -53,7 +53,6 @@ export function clearSelectedTags(): TagsAction {
   };
 }
 
-
 export function getAllTags() {
   return function(dispatch: any, getState: () => RootState) {
     dispatch(requestAllTags());
@@ -61,7 +60,10 @@ export function getAllTags() {
     return api
       .allTags()
       .then((response) => {
-        if (response.response.statusCode && response.response.statusCode === 200) {
+        if (
+          response.response.statusCode &&
+          response.response.statusCode === 200
+        ) {
           dispatch(receiveAllTags(response.body));
         } else {
           dispatch(failGetAllTags(response.response));
@@ -74,20 +76,25 @@ export function getAllTags() {
 }
 
 export function addFavoriteTags(tags: string | string[]) {
-  return _updateFavoriteTags(tags, TagsUpdateType.AddFavorite)
+  return _updateFavoriteTags(tags, TagsUpdateType.AddFavorite);
 }
 
 export function removeFavoriteTags(tags: string | string[]) {
   return _updateFavoriteTags(tags, TagsUpdateType.RemoveFavorite);
 }
 
-export function _updateFavoriteTags(tags: string | string[], type: TagsUpdateType) {
+export function _updateFavoriteTags(
+  tags: string | string[],
+  type: TagsUpdateType
+) {
   return function(dispatch: any, getState: () => RootState) {
     const api = initClientSDK(dispatch, getState);
-    const favorite: string[] = new Array().concat(tags)
-    if(type === TagsUpdateType.AddFavorite) {
-      return api.updateTags({favorite: favorite});
+    let favorite: string[] = [];
+    favorite = favorite.concat(tags);
+
+    if (type === TagsUpdateType.AddFavorite) {
+      return api.updateTags({ favorite: favorite });
     }
-    return api.unFavoriteTags({favorite: favorite});
+    return api.unFavoriteTags({ favorite: favorite });
   };
 }

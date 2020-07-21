@@ -2,10 +2,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { StaticContext } from "react-router"
+import { StaticContext } from "react-router";
 // Store
 import { RootState } from "../../../store/rootReducer";
-import { addSelectedTag, removeSelectedTag, clearSelectedTags, removeFavoriteTags, addFavoriteTags } from "../../../store/tags/actions";
+import {
+  addSelectedTag,
+  removeSelectedTag,
+  clearSelectedTags,
+  removeFavoriteTags,
+  addFavoriteTags,
+} from "../../../store/tags/actions";
 import { TagsState } from "../../../store/tags/types";
 import { ViewType } from "../../../store/viewToggle/types";
 import { setViewToggleType } from "../../../store/viewToggle/actions";
@@ -15,7 +21,12 @@ import { SortType } from "../../../store/sort/types";
 import { FilterEnum, FilterObject } from "../../../store/filter/types";
 // Components
 import { Title } from "../../Dashboard/styled";
-import { InnerCardsContainer, OuterCardsContainer, UpperBar, ViewHelperBar } from "./styled";
+import {
+  InnerCardsContainer,
+  OuterCardsContainer,
+  UpperBar,
+  ViewHelperBar,
+} from "./styled";
 import ToggleButton from "./ToggleButton";
 import TemplatesView from "./TemplatesView";
 import Sort from "../../Dashboard/SearchPage/Sort";
@@ -36,7 +47,7 @@ const mapStateToProps = (state: RootState) => {
     page: state.page,
     filter: state.filter.filterType,
     search: state.search,
-    sort: state.sort.sortType
+    sort: state.sort.sortType,
   };
 };
 const mapDispatchToProps = (dispatch: any) => {
@@ -57,11 +68,11 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(clearSelectedTags());
     },
     onAddFavoriteTag: (tag: string) => {
-      dispatch(addFavoriteTags(tag))
+      dispatch(addFavoriteTags(tag));
     },
     onRemoveFavoriteTag: (tag: string) => {
-      dispatch(removeFavoriteTags(tag))
-    }
+      dispatch(removeFavoriteTags(tag));
+    },
   };
 };
 
@@ -73,7 +84,13 @@ interface Props extends RouteComponentProps<{}, StaticContext, HistoryState> {
   setPage: (currentPageTitle: string, currentPage: string) => void;
   toggleView: (viewType: ViewType) => void;
   getTags: () => void;
-  getTemplates: (tags?: string[], ifOwned?: boolean, name?: string, sortBy?: SortType, filterState?: FilterEnum) => void;
+  getTemplates: (
+    tags?: string[],
+    ifOwned?: boolean,
+    name?: string,
+    sortBy?: SortType,
+    filterState?: FilterEnum
+  ) => void;
   addSelectedTag: (tag: string) => void;
   removeSelectedTag: (tag: string) => void;
   clearSelectedTags: () => void;
@@ -103,20 +120,30 @@ class TemplatesPage extends Component<Props, State> {
     const { currentPage, previousPage } = this.props.page;
     const { pageID } = this.props;
     const { location } = this.props.history;
-    if ((currentPage === "Template" && previousPage === pageID)
-      || (location.state && location.state.redirect)) {
-      this.state = { selectedTags: this.props.tags.selectedTags };
+    if (
+      (currentPage === "Template" && previousPage === pageID) ||
+      (location.state && location.state.redirect)
+    ) {
+      this.setState({
+        selectedTags: this.props.tags.selectedTags,
+      });
     } else {
       this.props.clearSelectedTags();
-      this.state = { selectedTags: [] };
+      this.setState({
+        selectedTags: [],
+      });
     }
-  }
+  };
 
   tagOnClick = (tag: string): void => {
     this.setState((state) => {
       if (state.selectedTags.includes(tag)) {
         this.props.removeSelectedTag(tag);
-        return { selectedTags: state.selectedTags.filter((selectedTag: string) => selectedTag !== tag) };
+        return {
+          selectedTags: state.selectedTags.filter(
+            (selectedTag: string) => selectedTag !== tag
+          ),
+        };
       } else {
         this.props.addSelectedTag(tag);
         return { selectedTags: state.selectedTags.concat(tag) };
@@ -134,18 +161,37 @@ class TemplatesPage extends Component<Props, State> {
   };
   componentDidMount() {
     this.props.getTags();
-    this.props.history.replace(buildAdressBarURL(this.props.basePath, this.state.selectedTags, this.props.filter.owner, this.props.search.query, this.props.sort, this.props.filter.state));
+    this.props.history.replace(
+      buildAdressBarURL(
+        this.props.basePath,
+        this.state.selectedTags,
+        this.props.filter.owner,
+        this.props.search.query,
+        this.props.sort,
+        this.props.filter.state
+      )
+    );
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     const props: Props = this.props;
-    if (prevState.selectedTags.length !== this.state.selectedTags.length
-      || prevProps.filter.owner !== props.filter.owner
-      || prevProps.filter.state !== props.filter.state
-      || prevProps.sort !== props.sort
-      || prevProps.search.query !== props.search.query
+    if (
+      prevState.selectedTags.length !== this.state.selectedTags.length ||
+      prevProps.filter.owner !== props.filter.owner ||
+      prevProps.filter.state !== props.filter.state ||
+      prevProps.sort !== props.sort ||
+      prevProps.search.query !== props.search.query
     ) {
-      this.props.history.replace(buildAdressBarURL(this.props.basePath, this.state.selectedTags, this.props.filter.owner, this.props.search.query, this.props.sort, this.props.filter.state));
+      this.props.history.replace(
+        buildAdressBarURL(
+          this.props.basePath,
+          this.state.selectedTags,
+          this.props.filter.owner,
+          this.props.search.query,
+          this.props.sort,
+          this.props.filter.state
+        )
+      );
     }
   }
 
@@ -159,7 +205,7 @@ class TemplatesPage extends Component<Props, State> {
     let favoriteTags: string[] = [];
     if (!tagsState.isFetching && tagsState.allTags) {
       if (tagsState.allTags.allTags) {
-        allTags = tagsState.allTags.allTags
+        allTags = tagsState.allTags.allTags;
       }
       if (tagsState.allTags.favoriteTags) {
         favoriteTags = tagsState.allTags.favoriteTags;
@@ -175,21 +221,50 @@ class TemplatesPage extends Component<Props, State> {
             <Title>{this.props.pageTitle}</Title>
             <ViewHelperBar>
               <TooltipHost id={listTooltip} content={LIST_VIEW}>
-                <ToggleButton iconProps={{ iconName: "BulletedList" }} onClick={this.props.toggleView} viewType={ViewType.List} title={LIST_VIEW} />
+                <ToggleButton
+                  iconProps={{ iconName: "BulletedList" }}
+                  onClick={this.props.toggleView}
+                  viewType={ViewType.List}
+                  title={LIST_VIEW}
+                />
               </TooltipHost>
               <TooltipHost id={gridTooltip} content={GRID_VIEW}>
-                <ToggleButton iconProps={{ iconName: "GridViewMedium" }} onClick={this.props.toggleView} viewType={ViewType.Grid} title={GRID_VIEW} />
+                <ToggleButton
+                  iconProps={{ iconName: "GridViewMedium" }}
+                  onClick={this.props.toggleView}
+                  viewType={ViewType.Grid}
+                  title={GRID_VIEW}
+                />
               </TooltipHost>
               <Sort />
               <Filter />
             </ViewHelperBar>
           </UpperBar>
-          <TagList tags={allTags} selectedTags={this.state.selectedTags} allowEdit={false} favoriteTags={favoriteTags} onClick={this.tagOnClick} toggleStyle={this.tagToggleStyle} direction={ScrollDirection.Horizontal} allowSetFavorite={true} onAddFavoriteTag={this.props.onAddFavoriteTag} onRemoveFavoriteTag={this.props.onRemoveFavoriteTag} />
-          <TemplatesView onClick={this.selectTemplate} selectedTags={this.state.selectedTags} getTemplates={this.props.getTemplates} basePath={this.props.basePath} />
+          <TagList
+            tags={allTags}
+            selectedTags={this.state.selectedTags}
+            allowEdit={false}
+            favoriteTags={favoriteTags}
+            onClick={this.tagOnClick}
+            toggleStyle={this.tagToggleStyle}
+            direction={ScrollDirection.Horizontal}
+            allowSetFavorite={true}
+            onAddFavoriteTag={this.props.onAddFavoriteTag}
+            onRemoveFavoriteTag={this.props.onRemoveFavoriteTag}
+          />
+          <TemplatesView
+            onClick={this.selectTemplate}
+            selectedTags={this.state.selectedTags}
+            getTemplates={this.props.getTemplates}
+            basePath={this.props.basePath}
+          />
         </InnerCardsContainer>
       </OuterCardsContainer>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TemplatesPage));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(TemplatesPage));
