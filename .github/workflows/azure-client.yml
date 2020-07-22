@@ -28,4 +28,12 @@ jobs:
           npm install -g react-scripts
           npm run build --if-present
 
-AZUREAPPSERVICE_PUBLISHPROFILE_CED72A7625234929AD6952F1F6684633
+          
+      - name: "Deploy to Azure Web App"
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "ghbacclient"
+          slot-name: "production"
+          publish-profile: ${{ secrets. AZUREAPPSERVICE_PUBLISHPROFILE_CED72A7625234929AD6952F1F6684633}}
+          package: ./private-templates-service/client
+
