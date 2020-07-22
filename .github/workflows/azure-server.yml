@@ -26,13 +26,6 @@ jobs:
           npm run link-client
           npm run init-app
           npm run build --if-present
-
-      - name: npm install, build, and test
-        working-directory: private-templates-service/client
-        run: |
-          npm install -g typescript
-          npm install -g react-scripts
-          npm run build
           
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
@@ -40,4 +33,4 @@ jobs:
           app-name: "ghbacservice-nodocker"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_bed72a7625234929ad6952f1f6684632 }}
-          package: ./private-templates-service
+          package: ./private-templates-service/server
