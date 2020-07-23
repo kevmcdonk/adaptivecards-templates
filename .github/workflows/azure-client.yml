@@ -22,11 +22,10 @@ jobs:
 
 
       - name: npm install, build, and test
-        working-directory: private-templates-service/server
+        working-directory: private-templates-service/adaptivecards-templating-service
         run: |
-          npm run init-app
-          npm run build --if-present
-
+          npm install
+          
       - name: npm install, build, and test
         working-directory: private-templates-service/client
         run: |
