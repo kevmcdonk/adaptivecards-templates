@@ -39,7 +39,11 @@ jobs:
           npm install -g typescript
            echo 'NPM INSTALL REACT SCRIPTS'
           npm install -g react-scripts
-           
+          
+      - name: list node modules
+        working-directory: private-templates-service/client/src
+        run: |
+          npm link adaptive-templating-service-typescript-node
           
       - name: list node modules
         working-directory: private-templates-service/client/node_modules
