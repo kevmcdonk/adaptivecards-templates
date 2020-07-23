@@ -46,11 +46,6 @@ jobs:
           npm link adaptive-templating-service-typescript-node
           
       - name: list node modules
-        working-directory: private-templates-service/client/node_modules
-        run: |
-          dir
-          
-      - name: list node modules
         working-directory: private-templates-service/client
         run: |
           echo 'NPM RUN BUILD'
