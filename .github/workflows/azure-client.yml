@@ -22,10 +22,11 @@ jobs:
 
 
       - name: npm install, build, and test
-        working-directory: private-templates-service/adaptivecards-templating-service
+        working-directory: private-templates-service/adaptivecards-templating-client/typescript
         run: |
           npm install
           npm run build
+          npm link
           
       - name: npm install, build, and test
         working-directory: private-templates-service/client
