@@ -31,6 +31,7 @@ jobs:
       - name: npm install, build, and test
         working-directory: private-templates-service/client
         run: |
+          npm link adaptive-templating-service-typescript-node
           npm install
           npm install -g typescript
           npm install -g react-scripts
