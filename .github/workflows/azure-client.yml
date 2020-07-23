@@ -40,6 +40,11 @@ jobs:
           npm install -g react-scripts
            echo 'NPM RUN BUILD'
           npm run build --if-present
+          
+      - name: list node modules
+        working-directory: private-templates-service/client/node_modules
+        run: |
+          dir
 
           
       - name: "Deploy to Azure Web App"
