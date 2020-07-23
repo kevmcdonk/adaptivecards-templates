@@ -34,8 +34,11 @@ jobs:
           npm link adaptive-templating-service-typescript-node
           echo 'NPM INSTALL'
           npm install
+           echo 'NPM INSTALL TYPESCRIPT'
           npm install -g typescript
+           echo 'NPM INSTALL REACT SCRIPTS'
           npm install -g react-scripts
+           echo 'NPM RUN BUILD'
           npm run build --if-present
 
           
