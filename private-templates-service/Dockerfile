@@ -17,3 +17,4 @@ RUN tsc
 CMD ["npm", "start", "dev"]
 
 EXPOSE 8080 
+
