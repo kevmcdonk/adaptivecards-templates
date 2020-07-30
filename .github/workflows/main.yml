@@ -16,4 +16,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file private-templates-service/Dockerfile --tag kevmcdonk/acms_ghb:$(date +%s)
+      working-directory: private-templates-service
+      run: docker build . --file Dockerfile --tag kevmcdonk/acms_ghb:$(date +%s)
