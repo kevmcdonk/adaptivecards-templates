@@ -1,0 +1,19 @@
+name: Manual Docker Image Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Docker Image Name'
+        required: false
+        default: 'kevmcdonk/acms_ghb'
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file private-templates-service/Dockerfile --tag kevmcdonk/acms_ghb:$(date +%s)
